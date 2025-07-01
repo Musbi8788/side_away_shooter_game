@@ -19,9 +19,12 @@ class SideWayShip():
         # load the game image 
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
+        self.image = pygame.transform.rotate(self.image, -90)
+
 
         # set the position of the image in the screen
-        # self.rect.right = 
+        self.screen_rect = self.screen.get_rect()
+        self.rect.midleft = self.screen_rect.midleft
     def run_game(self):
         """manage the game running
         """
@@ -31,16 +34,17 @@ class SideWayShip():
                 if event.type == pygame.QUIT:
                     sys.exit()
 
-    def _update(self):
+            self._update_screen()
+
+
+    def _update_screen(self):
         """Update the screen background and show the image 
         """
         self.screen.fill(self.settings.bg_color)
         self.screen.blit(self.image, self.rect)
+        pygame.display.flip()
 
 
 if __name__ == "__main__":
     rg = SideWayShip()
     rg.run_game()
-
-
-        
