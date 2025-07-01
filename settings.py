@@ -18,5 +18,5 @@ class Settings:
         # Screen Settings
         self.screen_width = 800
         self.screen_height = 500
-        self.bg_color = (0, 127, 255)
+        self.bg_color = (130, 200, 229)
         self.game_title = "Ship Game"
