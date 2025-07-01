@@ -13,8 +13,17 @@ class SideWayShip():
         pygame.init()
         self.settings = Settings()
 
-        # using the screen setttings
+        # Using the screen setttings
+
+        # Defualt screen
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+
+        # FullScreen
+        # self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        # self.screen_width = self.screen.get_rect().width
+        # self.screen_height = self.screen.get_rect().height
+
+
         pygame.display.set_caption(self.settings.game_title)
 
         self.ship = Ship(self)
