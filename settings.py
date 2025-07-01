@@ -16,7 +16,7 @@ class Settings:
         self.ship_speed = 1.5
 
         # Screen Settings
-        self.screen_width = 800
-        self.screen_height = 500
+        self.screen_width = 850
+        self.screen_height = 650
         self.bg_color = (130, 200, 229)
         self.game_title = "Ship Game"

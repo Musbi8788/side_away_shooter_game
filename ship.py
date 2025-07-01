@@ -38,12 +38,12 @@ class Ship:
         """
         # update the ship's x value not the self.rect
         # move the ship top
-        if self.moving_top and self.rect.top < self.screen_rect.top:
-            self.y += self.settings.ship_speed
+        if self.moving_top and self.rect.top > self.screen_rect.top:
+            self.y -= self.settings.ship_speed
 
         # move the ship down
-        if self.moving_down and self.rect.bottom > self.screen_rect.bottom:
-            self.y -= self.settings.ship_speed
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.y += self.settings.ship_speed
 
         # Update the rect object from self.y
         self.rect.y = int(self.y)
@@ -52,8 +52,7 @@ class Ship:
         """Draw the ship at it current position
         """
         self.screen.blit(self.image, self.rect)
-        
-
+    
 
 
 
