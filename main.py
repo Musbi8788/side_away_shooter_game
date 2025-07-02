@@ -1,7 +1,10 @@
 import sys
 import pygame
-from settings import Settings
+
 from ship import Ship
+from bullets import Bullet
+from settings import Settings
+
 
 class SideWayShip():
     """A class manage the side away ship game
@@ -27,6 +30,7 @@ class SideWayShip():
         pygame.display.set_caption(self.settings.game_title)
 
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
 
     def run_game(self):
@@ -36,6 +40,8 @@ class SideWayShip():
         while game_is_running:
             self._check_events()
             self.ship.update()
+            self.bullets.update()
+            self._update_bullets()
             self._update_screen()
     
     def _check_events(self):
@@ -57,6 +63,8 @@ class SideWayShip():
             self.ship.moving_top = True
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = True
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
         elif event.key == pygame.K_q:
             sys.exit()
     
@@ -72,12 +80,31 @@ class SideWayShip():
             self.ship.moving_down = False
 
 
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group
+        """
+        # Limit the bullets showing in the game screen
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+
+    def _update_bullets(self):
+        """Update position of bullet and get rid of the old bullet
+        """
+        # Get rid of bullets that has disappeared
+        for bullet in self.bullets.copy():
+            # place i get stuck with 
+            if bullet.rect.left > self.screen.get_rect().right:
+                self.bullets.remove(bullet)
+
 
     def _update_screen(self):
         """Update the screen background and show the image 
         """
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         pygame.display.flip()
 
 
