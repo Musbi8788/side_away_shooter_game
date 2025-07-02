@@ -84,17 +84,17 @@ class SideWayShip():
         """Create a new bullet and add it to the bullets group
         """
         # Limit the bullets showing in the game screen
-        # if len(self.bullets) < self.settings.bullet_allowed:
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
-        print(len(self.bullets))
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
 
     def _update_bullets(self):
         """Update position of bullet and get rid of the old bullet
         """
         # Get rid of bullets that has disappeared
         for bullet in self.bullets.copy():
-            if bullet.rect.left <= 0:
+            # place i get stuck with 
+            if bullet.rect.left > self.screen.get_rect().right:
                 self.bullets.remove(bullet)
 
 
