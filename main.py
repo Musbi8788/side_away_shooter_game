@@ -21,7 +21,7 @@ class SideWayShip():
         # Defualt screen
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
-        # FullScreen
+        # # FullScreen
         # self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
         # self.screen_width = self.screen.get_rect().width
         # self.screen_height = self.screen.get_rect().height
