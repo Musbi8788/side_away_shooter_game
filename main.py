@@ -7,7 +7,7 @@ from settings import Settings
 from aliens import Alien
 
 class SideWayShip():
-    """A class manage the side away ship game
+    """A class to manage the sideways shooter game
     """
 
     def __init__(self, ):
@@ -34,7 +34,7 @@ class SideWayShip():
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
 
-        # create fleet mean group of aliens
+        # Create the initial fleet of aliens
         self._create_fleet()
 
     def run_game(self):
@@ -45,6 +45,7 @@ class SideWayShip():
             self._check_events()
             self.ship.update()
             self.bullets.update()
+            self._check_bullets_aliens_collisions()
             self._update_bullets()
             self._update_aliens()
             self._update_screen()
@@ -75,9 +76,6 @@ class SideWayShip():
     
     def _check_keyup_events(self, event):
         """Respond to key release
-
-        Args:
-            event (_type_): _description_
         """
         if event.key == pygame.K_UP:
             self.ship.moving_top = False
@@ -101,12 +99,12 @@ class SideWayShip():
         # Remove any bullets and aliens that have collided
 
         collisions = pygame.sprite.groupcollide(
-            self.bullets, self.aliens, False, True)  # change False to True after
+            self.bullets, self.aliens, True, True)  # change False to True after
 
         # if aliens don't exist create a new fleet of aliens
         if not self.aliens:
-            # Destory existing bullets and create new fleet
-            self.aliens.empty()  # destory the aliens
+            # Destroy existing bullets and create new fleet
+            self.bullets.empty()  # Destroy the aliens
             self._create_fleet()  # create new fleet of aliens
 
     def _create_fleet(self):
@@ -121,10 +119,10 @@ class SideWayShip():
 
         # Determine the number of aliens that fit on the screen
         ship_width = self.ship.rect.width
-        available_space_y = (self.settings.screen_width -
+        available_space_x = (self.settings.screen_width -
                              (2 * alien_width) - ship_width)
         
-        number_columns = available_space_y // (2 * alien_width)  # defualt is 2
+        number_columns = available_space_x // (2 * alien_width)  # defualt is 2
 
         # Create the full fleet of aliens
         for column_number in range(number_columns):
@@ -140,7 +138,9 @@ class SideWayShip():
         alien.y = alien_height + 2 * alien_height * alien_number
         alien.rect.y = alien.y
 
-        alien.rect.right = self.settings.screen_width - 2 * alien_width * column_number
+        alien.rect.x = self.settings.screen_width - \
+            alien_width - 2*alien_width*column_number
+
         
         self.aliens.add(alien)
 
@@ -148,9 +148,8 @@ class SideWayShip():
         """Check if an alien is at edge, 
             then update the position of all aliens in the fleet.
         """
-        self._check_fleet_edges(
-            # checking the position of the alien and determinding an action to do with each fleet.
-        )
+        self._check_fleet_edges()  # check fleet at edges
+        
         self.aliens.update()
 
     def _check_fleet_edges(self):
