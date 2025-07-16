@@ -6,12 +6,12 @@ class Alien(Sprite):
     """A class to represent a single alien in the fleet.
     """
 
-    def __init__(self, ai_game):
+    def __init__(self, ss_game):
         """Initialize the alien and set it starting position.
         """
         super().__init__()
-        self.screen = ai_game.screen
-        self.settings = ai_game.settings
+        self.screen = ss_game.screen
+        self.settings = ss_game.settings
 
         # Load the image and set it rect attributes
         self.image = pygame.image.load("images/alien.bmp")
