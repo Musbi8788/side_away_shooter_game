@@ -1,19 +1,20 @@
 import pygame
 
+
 class Ship:
     """A class to manage the ship
     """
 
-    def __init__(self, ai_game):
+    def __init__(self, ss_game):
         """Initialize the ship and set it starting position
 
         Args:
-            ai_game (_type_): settings model
+            ss_game (_type_): settings model
         """
 
-        self.screen = ai_game.screen 
-        self.settings = ai_game.settings
-        self.screen_rect = ai_game.screen.get_rect()
+        self.screen = ss_game.screen
+        self.settings = ss_game.settings
+        self.screen_rect = ss_game.screen.get_rect()
 
         # load the game image
         self.image = pygame.image.load('images/ship.bmp')
@@ -57,9 +58,3 @@ class Ship:
         """Center left the ship on the screen"""
         self.rect.midleft = self.screen_rect.midleft
         self.x = float(self.rect.x)
-    
-
-
-
-
-
