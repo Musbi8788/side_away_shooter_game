@@ -11,5 +11,5 @@ class GameStats:
 
     def rest_stats(self,):
         """Initialize statistics that can change during the game."""
-        
-        self.ships_left -= self.settings.ship_limit
+
+        self.ships_left = self.settings.ship_limit
