@@ -36,6 +36,7 @@ class SideWaysShooter():
         self.stats = GameStats(self)
 
         self.ship = Ship(self)
+        
         # Make the bullets and aliens in a pygame group form
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
