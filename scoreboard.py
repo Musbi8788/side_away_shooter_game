@@ -48,7 +48,7 @@ class Scoreboard:
 
     def prep_level(self):
         """Turn the level into a rendered image."""
-        level_str = "Level: " + str(self.stats.level)
+        level_str = "  Level: " + str(self.stats.level)
         self.level_image = self.font.render(
             # generate the level text image
             level_str, True, self.level_color)
@@ -60,8 +60,8 @@ class Scoreboard:
         self.level_rect = self.level_image.get_rect()
         self.level_rect.right = self.score_rect.right
 
-        self.level_rect.top = self.score_rect.right + \
-            10  # position the level under the score
+        self.level_rect.right = self.score_rect.left + \
+            -25  # position the level under the life
 
     def prep_score(self):
         """Turn the score into a rendered image."""
