@@ -14,7 +14,7 @@ class Alien(Sprite):
         self.settings = ss_game.settings
 
         # Load the image and set it rect attributes
-        self.image = pygame.image.load("images/alien.bmp")
+        self.image = pygame.image.load("images/alien1.bmp")
 
         # Rotate the image to left
         self.image = pygame.transform.rotate(self.image, -90)
