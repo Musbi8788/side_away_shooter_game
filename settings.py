@@ -26,8 +26,8 @@ class Settings:
         """Set the screen settings"""
 
         # Screen Settings
-        self.screen_width = 850  # defualt 850
-        self.screen_height = 650  # 650
+        self.screen_width = 1000
+        self.screen_height = 650
         self.bg_color = (230, 230, 230)
         self.game_title = "Site away shooter"
 
