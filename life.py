@@ -20,6 +20,8 @@ class Life(Sprite):
 
         # Load the image and get it rect
         self.image = pygame.image.load('images/heart1.bmp')
+        # Rotate life
+        self.image = pygame.transform.rotate(self.image, -90)
         self.rect = self.image.get_rect()
 
 
