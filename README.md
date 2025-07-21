@@ -71,6 +71,7 @@ The highest score is saved in high_score.txt, so you can always come back and tr
 ![The Game preview](images/game.png)
 ![The Game preview](images/image.png)
 
+
 ## 🙌 Credits
-Built by Musbi Jawo
+Built by Musbi 
 Inspired by the Alien Invasion project from the Python Crash Course book.
